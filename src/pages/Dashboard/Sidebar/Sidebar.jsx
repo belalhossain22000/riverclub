@@ -1,8 +1,13 @@
 import React from "react";
 import logo from "../../../assets/Images/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
+  const navigate = useNavigate()
+  const logOut = () => {
+    localStorage.removeItem("accessToken")
+    navigate("/login")
+  }
   return (
     <aside
       id='sidebar'
@@ -183,7 +188,7 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
           </svg>{" "}
           Setting
         </NavLink>
-        <NavLink className='sidebar-list-item mt-[100px]'>
+        <NavLink onClick={logOut} className='sidebar-list-item mt-[100px]'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='21'
